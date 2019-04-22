@@ -1,0 +1,7 @@
+// Final scss file
+@import 'base/all';
+
+.iss-app {
+	@import 'components/all';
+	font-family: $font-family;
+}
