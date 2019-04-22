@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import Header from './header';
-import MapLocation from './MapLocation';
+import MapLocation from './mapLocation';
 
 class core extends Component {
 	render() {

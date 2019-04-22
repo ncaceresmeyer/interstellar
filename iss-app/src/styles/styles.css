@@ -48,30 +48,34 @@ table {
 
 .iss-app {
   font-family: "Lato", Arial, Helvetica, sans-serif; }
-
-.iss-app .iss-wrapper {
-  max-width: 1180px;
-  margin: 0 auto; }
-
-.iss-app h3 {
-  font-size: 18px;
-  font-weight: 700; }
-
-.iss-app .iss-header {
-  padding: 60px;
-  background: #4829B2;
-  color: #fff;
-  font-weight: 300; }
-
-.iss-app .iss-header h1 {
-  font-size: 50px;
-  line-height: 70px; }
-
-.iss-app .iss-header p {
-  font-size: 18px;
-  font-style: italic;
-  letter-spacing: .01em; }
-
-.iss-app .iss-mapLocation {
-  background: #f1f1f1;
-  padding: 60px; }
+  .iss-app .iss-wrapper {
+    max-width: 1180px;
+    margin: 0 auto; }
+  .iss-app h3 {
+    font-size: 18px;
+    font-weight: 700;
+    line-height: 200%; }
+  .iss-app p {
+    font-size: 14px;
+    line-height: 150%; }
+  .iss-app strong {
+    font-weight: 700; }
+  .iss-app .iss-header {
+    padding: 60px;
+    background: #4829B2;
+    color: #fff;
+    font-weight: 300; }
+    .iss-app .iss-header h1 {
+      font-size: 50px;
+      line-height: 70px; }
+    .iss-app .iss-header p {
+      font-size: 18px;
+      font-style: italic;
+      letter-spacing: .01em; }
+  .iss-app .iss-mapLocation {
+    background: #f1f1f1;
+    padding: 60px; }
+  .iss-app .iss-mapContent {
+    width: 100%;
+    height: 500px;
+    margin: 30px auto; }
