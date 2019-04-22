@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import Header from './header';
 import MapLocation from './mapLocation';
+import PlacesGallery from './placesGallery';
 
 class core extends Component {
 	render() {
@@ -8,6 +9,7 @@ class core extends Component {
 			<React.Fragment>
 				<Header />
 				<MapLocation />
+				<PlacesGallery />
 			</React.Fragment>
 		);
 	}

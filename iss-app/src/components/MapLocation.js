@@ -21,7 +21,7 @@ class MapLocation extends Component {
 		const { issLocation } = this.state;
 
 		return (
-			<div className="iss-mapLocation">
+			<div className="iss-container iss-mapLocation">
 				<div className="iss-wrapper">
 					<h3>ISS current location</h3>
 					<p><strong>Latitude:</strong> { issLocation.issLat }</p>

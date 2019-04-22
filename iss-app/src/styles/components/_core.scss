@@ -8,10 +8,16 @@ $mainPadding: 60px;
     margin: 0 auto;
 }
 
+.iss-container {
+	padding: $mainPadding;
+	font-weight: 300;
+}
+
 h3 {
 	font-size: 18px;
 	font-weight: 700;
 	line-height: 200%;
+	margin-bottom: 10px;
 }
 
 p {

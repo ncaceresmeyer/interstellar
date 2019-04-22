@@ -1,0 +1,24 @@
+.iss-galleryPlaces {
+	
+	ul {
+		width: 100%;
+	    display: grid;
+	    grid-template-columns: repeat(3, 1fr);
+	    grid-auto-flow: dense;
+	    grid-template-rows: repeat(5, 1fr);
+    	grid-gap: 10px;
+
+		li {
+			position: relative;
+			width: 100%;
+			padding-bottom: 100%;
+		}
+
+		img {
+			position: absolute;
+			width: 100%;
+			height: 100%;
+			object-fit: cover;
+		}
+	}
+}
