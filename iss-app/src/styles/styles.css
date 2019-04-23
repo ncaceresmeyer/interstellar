@@ -96,7 +96,7 @@ table {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   grid-auto-flow: dense;
-  grid-template-rows: repeat(5, 1fr);
+  grid-template-rows: auto;
   grid-gap: 10px; }
 
 .iss-app .iss-galleryPlaces ul li {
@@ -109,3 +109,17 @@ table {
   width: 100%;
   height: 100%;
   object-fit: cover; }
+
+.iss-app .fade-enter, .iss-app .fade-appear {
+  opacity: 0; }
+
+.iss-app .fade-appear-done.fade-enter-done {
+  opacity: 1;
+  transition: opacity 500ms ease; }
+
+.iss-app .fade-exit {
+  opacity: 1; }
+
+.iss-app .fade-exit.fade-exit-active {
+  opacity: 0;
+  transition: opacity 500ms ease; }
