@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 
-class Header extends Component {
+export default class Header extends Component {
 	render() {
 		return (
 			<div className="iss-container iss-header">
@@ -12,5 +12,3 @@ class Header extends Component {
 		);
 	}
 }
-
-export default Header;

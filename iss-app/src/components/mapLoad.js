@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 
-class Map extends Component {
+export default class Map extends Component {
 	constructor(props) {
 		super(props);
 	    this.onScriptLoad = this.onScriptLoad.bind(this);
@@ -33,5 +33,3 @@ class Map extends Component {
 	    );
 	}
 }
-
-export default Map;

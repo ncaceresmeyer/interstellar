@@ -1,51 +1,33 @@
 import React, { Component } from 'react';
-import axios from 'axios';
 import Map from './mapLoad';
 
-class MapLocation extends Component {
-	state = {
-		issLocation: []
-	};
-
-	async componentDidMount() {
-	    const { data: issLocation } = await axios.get('http://api.open-notify.org/iss-now');
-	    this.setState({ 
-	    	issLocation: {
-	            issLat: Number(issLocation.iss_position.latitude),
-	            issLong: Number(issLocation.iss_position.longitude)
-        	}
-	    });
-	}
-
+export default class MapLocation extends Component {
+	
 	render() {
-		const { issLocation } = this.state;
-
 		return (
 			<div className="iss-container iss-mapLocation">
 				<div className="iss-wrapper">
-					<h3>ISS current location</h3>
-					<p><strong>Latitude:</strong> { issLocation.issLat }</p>
-					<p><strong>Longitude:</strong> { issLocation.issLong }</p>
+					<h3>Current location</h3>
+					<p><strong>Latitude:</strong> {this.props.issLat} </p>
+					<p><strong>Longitude:</strong> {this.props.issLong} </p>
 					
 					<Map id="issMap"
 			        options={ { 
 			          center: { 
-			          	lat: issLocation.issLat, 
-			          	lng: issLocation.issLong 
+			          	lat: this.props.issLat, 
+			          	lng: this.props.issLong
 			          },
 			          zoom: 5
-			        } }
+			        }}
 			        onMapLoad={ map => {
-			          /*const marker =*/ new window.google.maps.Marker({
-			            position: { lat: issLocation.issLat, lng: issLocation.issLong },
+			          	new window.google.maps.Marker({
+			            position: { lat: this.props.issLat, lng: this.props.issLong },
 			            map: map
 			          });
-			        } } 
-			    />
+			        }} 
+			    	/>
 				</div>
 			</div>
 		);
 	}
 }
-
-export default MapLocation;

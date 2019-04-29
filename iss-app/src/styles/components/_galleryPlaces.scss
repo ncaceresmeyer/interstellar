@@ -1,12 +1,13 @@
 .iss-galleryPlaces {
 	
-	ul {
+	.iss-grid {
 		width: 100%;
 	    display: grid;
 	    grid-template-columns: repeat(3, 1fr);
 	    grid-auto-flow: dense;
 	    grid-template-rows: auto;
     	grid-gap: 10px;
+    	margin: 20px auto;
 
 		li {
 			position: relative;
