@@ -11,20 +11,35 @@ export default class PlacesGallery extends Component {
 		}
     };
 
-	async componentDidMount() {
-		// get images of near city
-        const { data: mediaPlaces } = await axios.get('https://pixabay.com/api/', 
-	    	{ params: {
-	    		key: process.env.REACT_APP_PIXKEY, 
-	    		q: 'cities', 
-	    		image_type: 'photo', 
-	    		category: 'places',
-	    		per_page: '15', 
-	    		order: 'latest' }
-	    })
-	    this.setState({ 
-          mediaPlaces: mediaPlaces.hits
-        });
+    componentWillReceiveProps(nextProps){
+        if(nextProps.firstCountry !== this.props.firstCountry) {
+          this.getMedia(nextProps);
+        }
+
+    }
+
+	getMedia = (props) => {
+		const firstCountry = props.firstCountry;
+
+		axios.get('https://pixabay.com/api/?', 
+		    	{ params: {
+		    		key: process.env.REACT_APP_PIXKEY, 
+		    		q: firstCountry, 
+		    		image_type: 'photo', 
+		    		category: 'places',
+		    		per_page: '15', 
+		    		order: 'latest'
+		    	}
+	    	})
+			.then(resMedia => {
+		      	const mediaPlaces = resMedia.data;
+		        this.setState({
+		        	mediaPlaces: mediaPlaces.hits
+		        });
+	    	})
+	    	.catch(error => {
+	    		console.log('An error occurred')
+	    	});
 	}
 
 
@@ -36,15 +51,13 @@ export default class PlacesGallery extends Component {
 				<div className="iss-wrapper">
 
 					<h3>Latest Cities Gallery</h3>
-
-					{ console.log ('test',this.props.firstCity) }
-								
+		
 					<ul>
-					{this.props.nearbyCities.map((city, i) => (
-						<li key={ i }> * { city[1] + ' - ' + city[3] }</li> 
-					))}
-					</ul>
-
+						{this.props && this.props.nearbyCities && this.props.nearbyCities.map((city, i) => (
+							<li key={ i }> * { city[1] + ' - ' + city[3] }</li> 
+						))}
+					</ul> 
+					
 					<ul className="iss-grid">{mediaPlaces.map(place => (
 						<li key={ place.id }>
 							<LazyLoad height={ '100%' }>
