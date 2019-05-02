@@ -12,6 +12,7 @@ $mainPadding: 60px;
 	font-weight: 300;
 }
 
+// fonts
 h3 {
 	font-size: 18px;
 	font-weight: 700;
@@ -26,4 +27,11 @@ p {
 
 strong {
 	font-weight: 700;
+}
+
+//misc
+.iss-listItems {
+	list-style: disc;
+    list-style-position: inside;
+    line-height: 120%;
 }

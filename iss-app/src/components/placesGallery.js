@@ -54,10 +54,10 @@ export default class PlacesGallery extends Component {
 		
 					<ul>
 						{this.props && this.props.nearbyCities && this.props.nearbyCities.map((city, i) => (
-							<li key={ i }> * { city[1] + ' - ' + city[3] }</li> 
+							<li key={ i } className="iss-listItems">{ city[1] + ' - ' + city[3] }</li> 
 						))}
 					</ul> 
-					
+
 					<ul className="iss-grid">{mediaPlaces.map(place => (
 						<li key={ place.id }>
 							<LazyLoad height={ '100%' }>
