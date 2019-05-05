@@ -34,7 +34,7 @@ export default class Core extends Component {
 		await axios.get('https://cors.io/?http://getnearbycities.geobytes.com/GetNearbyCities?', 
 		    	{ params: {
 		    		radius: '600', 
-		    		limit: '15',		    		
+		    		limit: '15',
 		    		Latitude: this.state.issLocation.issLat,
 		    		Longitude: this.state.issLocation.issLong
 		    	}
@@ -53,6 +53,7 @@ export default class Core extends Component {
 
 	render() {
 		const { issLocation, nearbyCities } = this.state;
+
 		return (
 			<React.Fragment>
 				<main className="container">

@@ -19,7 +19,6 @@ export default class PlacesGallery extends Component {
 
 	getMedia = async (props) => {
 		const firstCountry = props.nearbyCities[0][3];
-		//const firstCity = props.nearbyCities[0][1];
 
 		await axios.get('https://pixabay.com/api/?', 
 		    	{ params: {
@@ -44,9 +43,7 @@ export default class PlacesGallery extends Component {
 	    	})
 	    	.catch(error => {
 	    		console.log('An error occurred', error)
-	    	});
-
-	    	
+	    	});	
 	}
 
 
@@ -60,7 +57,7 @@ export default class PlacesGallery extends Component {
 					<h3>Latest Cities Gallery</h3>
 
 					<ul>
-						{this.props.nearbyCities.data > 0 ? this.props.nearbyCities.map((city, i) =>
+						{this.props.nearbyCities.length > 1 ? this.props.nearbyCities.map((city, i) =>
 							<li key={ i } className="iss-listItems">{ city[1] + ' - ' + city[3] }</li> )
 						: 
 							( <p className="iss-alertMsg">Sorry, no cities near this location.</p> )
