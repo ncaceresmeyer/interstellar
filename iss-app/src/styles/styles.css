@@ -75,6 +75,10 @@ table {
   list-style-position: inside;
   line-height: 120%; }
 
+.iss-app .iss-alertMsg {
+  color: #f00;
+  font-weight: 700; }
+
 .iss-app .iss-header {
   background: #4829B2;
   color: #fff; }

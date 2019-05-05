@@ -11,17 +11,17 @@ export default class PlacesGallery extends Component {
 		}
     };
 
-    componentWillReceiveProps(nextProps){
-        if(nextProps.firstCountry !== this.props.firstCountry) {
+    componentWillReceiveProps(nextProps) {
+        if(nextProps.nearbyCities !== this.props.nearbyCities) {
           this.getMedia(nextProps);
         }
+    };
 
-    }
+	getMedia = async (props) => {
+		const firstCountry = props.nearbyCities[0][3];
+		//const firstCity = props.nearbyCities[0][1];
 
-	getMedia = (props) => {
-		const firstCountry = props.firstCountry;
-
-		axios.get('https://pixabay.com/api/?', 
+		await axios.get('https://pixabay.com/api/?', 
 		    	{ params: {
 		    		key: process.env.REACT_APP_PIXKEY, 
 		    		q: firstCountry, 
@@ -33,49 +33,59 @@ export default class PlacesGallery extends Component {
 	    	})
 			.then(resMedia => {
 		      	const mediaPlaces = resMedia.data;
+		      	const mediaSearchTerm = resMedia.config.params.q;
 		        this.setState({
-		        	mediaPlaces: mediaPlaces.hits
+		        	mediaPlaces: mediaPlaces.hits,
+		        	mediaSearchTerm: mediaSearchTerm
 		        });
+		        if (mediaSearchTerm === undefined) {
+		        	console.log('no photos')
+		        };
 	    	})
 	    	.catch(error => {
-	    		console.log('An error occurred')
+	    		console.log('An error occurred', error)
 	    	});
+
+	    	
 	}
 
 
 	render() {
-		const { mediaPlaces } = this.state;
+		const { mediaPlaces, mediaSearchTerm } = this.state;
 
 		return (
 			<div className="iss-container iss-galleryPlaces">
 				<div className="iss-wrapper">
 
 					<h3>Latest Cities Gallery</h3>
-		
+
 					<ul>
-						{this.props && this.props.nearbyCities && this.props.nearbyCities.map((city, i) => (
-							<li key={ i } className="iss-listItems">{ city[1] + ' - ' + city[3] }</li> 
-						))}
+						{this.props.nearbyCities.data > 0 ? this.props.nearbyCities.map((city, i) =>
+							<li key={ i } className="iss-listItems">{ city[1] + ' - ' + city[3] }</li> )
+						: 
+							( <p className="iss-alertMsg">Sorry, no cities near this location.</p> )
+						}
 					</ul> 
 
-					<ul className="iss-grid">{mediaPlaces.map(place => (
-						<li key={ place.id }>
-							<LazyLoad height={ '100%' }>
-								<TransitionGroup component={ null } appear={ true } enter={ true }>
-									<CSSTransition 
-										key={ place.id }
-						            	timeout={ 200 }
-						            	classNames="fade"
-						            	enter={ true }
-						            	appear={ true }
-						            	in> 
-										<img src={ place.webformatURL } alt={ place.tags } />
-									</CSSTransition>
-								</TransitionGroup>
-							</LazyLoad>
-						</li>
-					))}</ul>
-
+						<ul className="iss-grid">{ mediaSearchTerm !== undefined 
+							? mediaPlaces.map(place => 
+								<li key={ place.id }>
+								<LazyLoad height={ '100%' }>
+									<TransitionGroup component={ null } appear={ true } enter={ true }>
+										<CSSTransition 
+											key={ place.id }
+							            	timeout={ 200 }
+							            	classNames="fade"
+							            	enter={ true }
+							            	appear={ true }
+							            	in> 
+											<img src={ place.webformatURL } alt={ place.tags } />
+										</CSSTransition>
+									</TransitionGroup>
+								</LazyLoad>
+							</li>)
+							: ( <p className="iss-alertMsg">Duh, we can't find photos for this place...</p> )
+						}</ul>
 				</div>
 			</div>
 		);
