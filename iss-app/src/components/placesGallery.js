@@ -20,6 +20,7 @@ export default class PlacesGallery extends Component {
 	getMedia = async (props) => {
 		const firstCountry = props.nearbyCities[0][3];
 
+		// get media from pixabayApi for the first country near iss location
 		await axios.get('https://pixabay.com/api/?', 
 		    	{ params: {
 		    		key: process.env.REACT_APP_PIXKEY, 
@@ -37,18 +38,17 @@ export default class PlacesGallery extends Component {
 		        	mediaPlaces: mediaPlaces.hits,
 		        	mediaSearchTerm: mediaSearchTerm
 		        });
-		        if (mediaSearchTerm === undefined) {
-		        	console.log('no photos')
-		        };
 	    	})
 	    	.catch(error => {
-	    		console.log('An error occurred', error)
-	    	});	
+	    		console.log('An error occurred', error);
+	    		this.setState({ error: 'Sorry, something went wrong.' });
+	    	});
+
+	    	
 	}
 
-
 	render() {
-		const { mediaPlaces, mediaSearchTerm } = this.state;
+		const { mediaPlaces, mediaSearchTerm, error } = this.state;
 
 		return (
 			<div className="iss-container iss-galleryPlaces">
@@ -64,25 +64,28 @@ export default class PlacesGallery extends Component {
 						}
 					</ul> 
 
-						<ul className="iss-grid">{ mediaSearchTerm !== undefined 
-							? mediaPlaces.map(place => 
-								<li key={ place.id }>
-								<LazyLoad height={ '100%' }>
-									<TransitionGroup component={ null } appear={ true } enter={ true }>
-										<CSSTransition 
-											key={ place.id }
-							            	timeout={ 200 }
-							            	classNames="fade"
-							            	enter={ true }
-							            	appear={ true }
-							            	in> 
-											<img src={ place.webformatURL } alt={ place.tags } />
-										</CSSTransition>
-									</TransitionGroup>
-								</LazyLoad>
-							</li>)
-							: ( <p className="iss-alertMsg">Duh, we can't find photos for this place...</p> )
-						}</ul>
+					{ error && <p className="iss-alertMsg">{ error }</p> }
+
+					<ul className="iss-grid">{ mediaSearchTerm !== undefined 
+						? mediaPlaces.map(place => 
+							<li key={ place.id }>
+							<LazyLoad height={ '100%' }>
+								<TransitionGroup component={ null } appear={ true } enter={ true }>
+									<CSSTransition 
+										key={ place.id }
+						            	timeout={ 200 }
+						            	classNames="fade"
+						            	enter={ true }
+						            	appear={ true }
+						            	in> 
+										<img src={ place.webformatURL } alt={ place.tags } />
+									</CSSTransition>
+								</TransitionGroup>
+							</LazyLoad>
+						</li>)
+						: ( <p className="iss-alertMsg">Duh, we can't find photos for this place...</p> )
+					}</ul>
+
 				</div>
 			</div>
 		);

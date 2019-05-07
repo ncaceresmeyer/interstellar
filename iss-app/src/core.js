@@ -14,51 +14,51 @@ export default class Core extends Component {
     };
 
    	async componentDidMount() {
+		axios.all([
+			//get location of ISS
+		    axios.get('http://api.open-notify.org/iss-now'),
+		    //get near cities of the current location of ISS
+		    axios.get('https://cors.io/?http://getnearbycities.geobytes.com/GetNearbyCities?', 
+				{ params: {
+					radius: '600', 
+					limit: '15',
+					Latitude: this.state.issLocation.issLat,
+					Longitude: this.state.issLocation.issLong
+				}
+			})
+		])
+		.then(axios.spread((resIssLoc, resNearbyCities) => {
+			//response location of ISS
+		    const issLocation = resIssLoc.data;
+			this.setState({
+				issLocation: {
+				    issLat: Number(issLocation.iss_position.latitude),
+				    issLong: Number(issLocation.iss_position.longitude)
+				}
+			});
+			//response near cities of the current location of ISS
+			const nearbyCities = resNearbyCities.data;
+			this.setState({
+				nearbyCities: nearbyCities
+			});
 
-   		//get location of ISS
-    	await axios.get('http://api.open-notify.org/iss-now')
-	    	.then(resIssLoc => {
-		      	const issLocation = resIssLoc.data;
-		        this.setState({
-		        	issLocation: {
-		            	issLat: Number(issLocation.iss_position.latitude),
-		            	issLong: Number(issLocation.iss_position.longitude)
-	        		}
-	       		})
-	    	})
-	    	.catch(error => {
-	    		console.log('An error occurred:', error)
-	    	});
+	  	}))
+	  	.catch(error => {
+	    	console.log('An error occurred:', error);
+	    	this.setState({ error: 'Sorry, an error occurred' });
+	    });
 
-		//get near cities of the current location of ISS
-		await axios.get('https://cors.io/?http://getnearbycities.geobytes.com/GetNearbyCities?', 
-		    	{ params: {
-		    		radius: '600', 
-		    		limit: '15',
-		    		Latitude: this.state.issLocation.issLat,
-		    		Longitude: this.state.issLocation.issLong
-		    	}
-	    	})
-			.then(resNearbyCities => {
-		      	const nearbyCities = resNearbyCities.data;
-		        this.setState({
-		        	nearbyCities: nearbyCities
-		        });
-	    	})
-	    	.catch(error => {
-	    		console.log('An error occurred:', error)
-	    	});
-
-	}
+	};
 
 	render() {
-		const { issLocation, nearbyCities } = this.state;
+		const { issLocation, nearbyCities, error } = this.state;
 
 		return (
 			<React.Fragment>
 				<main className="container">
 					<Header />
-					<MapLocation issLat={ issLocation.issLat } issLong={ issLocation.issLong } />
+					<div className="issError iss-wrapper"> { error && <p className="iss-alertMsg">{ error }</p> } </div>
+					<MapLocation issLat={ issLocation.issLat } issLong={ issLocation.issLong }> </MapLocation>
 					<PlacesGallery nearbyCities={ nearbyCities } />
 				</main>
 			</React.Fragment>

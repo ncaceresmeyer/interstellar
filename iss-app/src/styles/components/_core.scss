@@ -29,6 +29,12 @@ strong {
 	font-weight: 700;
 }
 
+//elements
+ul {
+	margin: 20px auto;
+	display: inline-block;
+}
+
 //misc
 .iss-listItems {
 	list-style: disc;
@@ -39,4 +45,6 @@ strong {
 .iss-alertMsg {
 	color: #f00;
 	font-weight: 700;
+	font-size: 16px;
+	margin: 10px 0;
 }
