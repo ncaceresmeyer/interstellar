@@ -1,0 +1,52 @@
+.iss-galleryPlaces {
+	
+	.iss-grid {
+		width: 100%;
+	    display: grid;
+	    grid-template-columns: repeat(3, 1fr);
+	    grid-auto-flow: dense;
+	    grid-template-rows: auto;
+    	grid-gap: 10px;
+
+		li {
+			position: relative;
+			width: 100%;
+			padding-bottom: 100%;
+		}
+
+		img {
+			position: absolute;
+			width: 100%;
+			height: 100%;
+			object-fit: cover;
+		}
+	}
+
+	.lazyload-placeholder {
+		color: #000;
+		height: 100%;
+		width: 100%;
+		min-width: 300px;
+		min-height: 300px;
+		
+		&::before {
+			content: 'loading content...'
+		}
+	}
+}
+
+.fade-enter, .fade-appear {
+	opacity: 0;
+}
+.fade-appear-done.fade-enter-done {
+  	opacity: 1;
+  	transition: opacity 500ms ease;
+}
+.fade-exit {
+  	opacity: 1;
+}
+.fade-exit.fade-exit-active {
+  	opacity: 0;
+  	transition: opacity 500ms ease;
+}
+

@@ -1,0 +1,50 @@
+//vars
+$font-family: 'Lato', Arial, Helvetica, sans-serif;
+$mainPadding: 60px;
+
+//core 
+.iss-wrapper {
+	max-width: 1180px;
+    margin: 0 auto;
+}
+.iss-container {
+	padding: $mainPadding;
+	font-weight: 300;
+}
+
+// fonts
+h3 {
+	font-size: 18px;
+	font-weight: 700;
+	line-height: 200%;
+	margin-bottom: 10px;
+}
+
+p {
+	font-size: 14px;
+	line-height: 150%;
+}
+
+strong {
+	font-weight: 700;
+}
+
+//elements
+ul {
+	margin: 20px auto;
+	display: inline-block;
+}
+
+//misc
+.iss-listItems {
+	list-style: disc;
+    list-style-position: inside;
+    line-height: 120%;
+}
+
+.iss-alertMsg {
+	color: #f00;
+	font-weight: 700;
+	font-size: 16px;
+	margin: 10px 0;
+}
