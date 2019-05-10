@@ -42,7 +42,8 @@
         "pit": true,
         "spyOn": true,
         "afterEach": true,
-        "beforeEach": true
+        "beforeEach": true,
+        "fetch": true
     },
     "settings": {
         "react": {

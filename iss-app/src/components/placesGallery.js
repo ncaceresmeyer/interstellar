@@ -38,7 +38,7 @@ export default class PlacesGallery extends Component {
 
 					<ul>
 						{this.props.nearbyCities.length > 1 ? this.props.nearbyCities.map((city, i) =>
-							<li key={ i } className="iss-listItems">{ city[1] + ' - ' + city[3] }</li> )
+							<li key={ String(i) } className="iss-listItems">{ city[ 1 ] + ' - ' + city[ 3 ] }</li> )
 						: 
 							( <p className="iss-alertMsg">Sorry, no cities near this location.</p> )
 						}
@@ -49,20 +49,20 @@ export default class PlacesGallery extends Component {
 					<ul className="iss-grid">{ mediaSearchTerm !== undefined
 						? mediaPlaces.map(place => 
 							<li key={ place.id }>
-							<LazyLoad height={ '100%' }>
-								<TransitionGroup component={ null } appear={ true } enter={ true }>
-									<CSSTransition 
-										key={ place.id }
-						            	timeout={ 200 }
-						            	classNames="fade"
-						            	enter={ true }
-						            	appear={ true }
-						            	in> 
-										<img src={ place.webformatURL } alt={ place.tags } />
-									</CSSTransition>
-								</TransitionGroup>
-							</LazyLoad>
-						</li>)
+								<LazyLoad height={ '100%' }>
+									<TransitionGroup component={ null } appear={ true } enter={ true }>
+										<CSSTransition 
+											key={ place.id }
+							            	timeout={ 200 }
+							            	classNames="fade"
+							            	enter={ true }
+							            	appear={ true }
+							            	in> 
+											<img src={ place.webformatURL } alt={ place.tags } />
+										</CSSTransition>
+									</TransitionGroup>
+								</LazyLoad>
+							</li>)
 						: ( <p className="iss-alertMsg">Duh, we can't find photos for this place...</p> )
 					}</ul>
 

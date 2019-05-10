@@ -19,13 +19,13 @@ export default class MapLocation extends Component {
 				          	lng: this.props.issLong
 				          },
 				          zoom: 5
-				        }}
+				        } }
 				        onMapLoad={ map => {
 				          	new window.google.maps.Marker({
 				            position: { lat: this.props.issLat, lng: this.props.issLong },
 				            map: map
 				          });
-				        }} 
+				        } } 
 				    	/> 
 						: <p className="iss-alertMsg">Map loading...</p>
 					}
