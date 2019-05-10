@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import axios from 'axios';
+//import axios from 'axios';
 import LazyLoad from 'react-lazyload';
 import { CSSTransition, TransitionGroup } from 'react-transition-group';
 
@@ -11,41 +11,21 @@ export default class PlacesGallery extends Component {
 		}
     };
 
-    componentWillReceiveProps(nextProps) {
-        if(nextProps.nearbyCities !== this.props.nearbyCities) {
-          this.getMedia(nextProps);
-        }
-    };
+    componentDidMount() {
+   		fetch('/api')
+  		.then(res => res.json())
+      	.then(mediaPlaces => 
+      		this.setState({
+				mediaPlaces: mediaPlaces.mediaPlaces,
+				mediaSearchTerm: mediaPlaces.mediaSearchTerm
+      		})
+      	)
+	  	.catch(error => {
+	    	console.log('An error occurred:', error);
+	    	this.setState({ error: 'Sorry, an error occurred' });
+	    });
 
-	getMedia = async (props) => {
-		const firstCountry = props.nearbyCities[0][3];
-
-		// get media from pixabayApi for the first country near iss location
-		await axios.get('https://pixabay.com/api/?', 
-		    	{ params: {
-		    		key: process.env.REACT_APP_PIXKEY, 
-		    		q: firstCountry, 
-		    		image_type: 'photo', 
-		    		category: 'places',
-		    		per_page: '15', 
-		    		order: 'latest'
-		    	}
-	    	})
-			.then(resMedia => {
-		      	const mediaPlaces = resMedia.data;
-		      	const mediaSearchTerm = resMedia.config.params.q;
-		        this.setState({
-		        	mediaPlaces: mediaPlaces.hits,
-		        	mediaSearchTerm: mediaSearchTerm
-		        });
-	    	})
-	    	.catch(error => {
-	    		console.log('An error occurred', error);
-	    		this.setState({ error: 'Sorry, something went wrong.' });
-	    	});
-
-	    	
-	}
+	};
 
 	render() {
 		const { mediaPlaces, mediaSearchTerm, error } = this.state;
@@ -66,7 +46,7 @@ export default class PlacesGallery extends Component {
 
 					{ error && <p className="iss-alertMsg">{ error }</p> }
 
-					<ul className="iss-grid">{ mediaSearchTerm !== undefined 
+					<ul className="iss-grid">{ mediaSearchTerm !== undefined && mediaSearchTerm !== '' 
 						? mediaPlaces.map(place => 
 							<li key={ place.id }>
 							<LazyLoad height={ '100%' }>
