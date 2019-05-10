@@ -46,7 +46,7 @@ export default class PlacesGallery extends Component {
 
 					{ error && <p className="iss-alertMsg">{ error }</p> }
 
-					<ul className="iss-grid">{ mediaSearchTerm !== undefined && mediaSearchTerm !== '' 
+					<ul className="iss-grid">{ mediaSearchTerm !== undefined
 						? mediaPlaces.map(place => 
 							<li key={ place.id }>
 							<LazyLoad height={ '100%' }>

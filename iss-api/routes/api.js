@@ -47,11 +47,11 @@ router.get('/', function(req, res, next) {
 							mediaPlaces: mediaPlaces.hits,
 		        			mediaSearchTerm: mediaSearchTerm
 	        			})
-					}).catch(errMedia => res.send(`${errMedia}`));
+					}).catch(errMedia => res.send(`Get Media ${errMedia}`));
 
-		  		}).catch(errCities => res.send(`${errCities}`));
+		  		}).catch(errCities => res.send(`Get Cities ${errCities}`));
 	  	})
-	  	.catch(errIssLoc => res.send(`${errIssLoc}`));
+	  	.catch(errIssLoc => res.send(`Get ISS ${errIssLoc}`));
 
 });
 
