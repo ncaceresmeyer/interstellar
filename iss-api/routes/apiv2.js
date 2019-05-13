@@ -25,13 +25,7 @@ router.get('/', function(req, res, next) {
 			    	const nearbyCities = resNearbyCities.data;
 			    	const firstCountry = nearbyCities[0][3];
 
-			    		res.send({
-							nearbyCities: nearbyCities,
-							issLat: Number(issLocation.latitude),
-							issLong: Number(issLocation.longitude)
-	        			})
-
-					/*axios.get(process.env.API_PIXURL, 
+					axios.get(process.env.API_PIXURL, 
 						{ params: {
 							key: process.env.REACT_APP_PIXKEY, 
 				    		q: firstCountry, 
@@ -54,7 +48,6 @@ router.get('/', function(req, res, next) {
 		        			mediaSearchTerm: mediaSearchTerm
 	        			})
 					}).catch(errMedia => res.send(`Get Media ${errMedia}`));
-					*/
 
 		  		}).catch(errCities => res.send(`Get Cities ${errCities}`));
 	  	})
