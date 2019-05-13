@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-//import axios from 'axios';
 import LazyLoad from 'react-lazyload';
 import { CSSTransition, TransitionGroup } from 'react-transition-group';
 
@@ -12,7 +11,7 @@ export default class PlacesGallery extends Component {
     };
 
     componentDidMount() {
-   		fetch('/api')
+   		fetch(process.env.REACT_APP_API+'/api')
   		.then(res => res.json())
       	.then(mediaPlaces => 
       		this.setState({

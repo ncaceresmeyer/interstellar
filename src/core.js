@@ -13,7 +13,7 @@ export default class Core extends Component {
     };
 
    	componentDidMount() {
-   		fetch('/api')
+   		fetch(process.env.REACT_APP_API+'/api')
   		.then(res => res.json())
       	.then(issLocation => 
       		this.setState({ 
