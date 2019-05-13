@@ -1,18 +1,20 @@
-var express = require('express');
-var axios = require('axios');
-var router = express.Router();
-require('dotenv').config()
+require('dotenv').config();
+const express = require('express');
+const axios = require('axios');
+const router = express.Router();
+const environment = process.env.NODE_ENV || 'development';
+const confEnv = require('../config/config');
 
 // get location of ISS and near cities.
 router.get('/', function(req, res, next) {
 	axios
 		// get location of ISS
-		.get(process.env.API_ISSURL)
+		.get(confEnv.API_ISSURL)
 		// response location of ISS
 		.then(resIssLoc => {
 		    const issLocation = resIssLoc.data.iss_position;
 		    // get near cities of ISS location
-			axios.get(process.env.API_CITIESURL, 
+			axios.get(confEnv.API_CITIESURL, 
 				{ params: {
 					radius: '600', 
 					limit: '15',
@@ -31,7 +33,7 @@ router.get('/', function(req, res, next) {
 							issLong: Number(issLocation.longitude)
 	        			})
 
-					/*axios.get(process.env.API_PIXURL, 
+					/*axios.get(env.API_PIXURL, 
 						{ params: {
 							key: process.env.REACT_APP_PIXKEY, 
 				    		q: firstCountry, 

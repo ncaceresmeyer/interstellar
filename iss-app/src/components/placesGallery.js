@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import LazyLoad from 'react-lazyload';
 import { CSSTransition, TransitionGroup } from 'react-transition-group';
+import confEnv from '../config/config';
 
 export default class PlacesGallery extends Component {
 	constructor(props) {
@@ -11,7 +12,7 @@ export default class PlacesGallery extends Component {
     };
 
     componentDidMount() {
-   		fetch(process.env.REACT_APP_API+'/api')
+   		fetch(confEnv.APP_APIURL+'/api')
   		.then(res => res.json())
       	.then(mediaPlaces => 
       		this.setState({
@@ -23,7 +24,6 @@ export default class PlacesGallery extends Component {
 	    	console.log('An error occurred:', error);
 	    	this.setState({ error: 'Sorry, an error occurred' });
 	    });
-
 	};
 
 	render() {

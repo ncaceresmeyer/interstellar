@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import Header from './components/header';
 import MapLocation from './components/MapLocation';
 import PlacesGallery from './components/placesGallery';
+import confEnv from './config/config';
 
 export default class Core extends Component {
 	constructor(props) {
@@ -13,7 +14,7 @@ export default class Core extends Component {
     };
 
    	componentDidMount() {
-   		fetch(process.env.REACT_APP_API+'/api')
+   		fetch(confEnv.APP_APIURL+'/api')
   		.then(res => res.json())
       	.then(issLocation => 
       		this.setState({ 
@@ -28,7 +29,6 @@ export default class Core extends Component {
 	    	console.log('An error occurred:', error);
 	    	this.setState({ error: 'Sorry, an error occurred' });
 	    });
-
 	};
 
 	render() {

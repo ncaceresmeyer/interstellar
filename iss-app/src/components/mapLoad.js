@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
 
+require('dotenv').config();
+
 export default class Map extends Component {
 	constructor(props) {
 		super(props);
