@@ -33,7 +33,7 @@ router.get('/', function(req, res, next) {
 							issLong: Number(issLocation.longitude)
 	        			})
 
-					/*axios.get(env.API_PIXURL, 
+					/*axios.get(confEnv.API_PIXURL, 
 						{ params: {
 							key: process.env.REACT_APP_PIXKEY, 
 				    		q: firstCountry, 
