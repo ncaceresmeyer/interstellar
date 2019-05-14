@@ -2,6 +2,8 @@ import React, { Component } from 'react';
 
 require('dotenv').config();
 
+console.log(process.env.REACT_APP_GKEY)
+
 export default class Map extends Component {
 	constructor(props) {
 		super(props);
