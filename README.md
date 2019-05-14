@@ -1,8 +1,11 @@
 ## Intro
 
-This APP is made with React and Express / Node. 
+This APP shows a map with the location of the International Space Station. List the latest cities/countries in a radius of 600px of the location and display a gallery of photos of the nearest country.
+
+The APP is made with React and Express / Node. 
 
 In the root you will find the API with it's dependencies and in the folder `iss-app` the FE application.
+
 
 
 ## Getting Started
@@ -12,7 +15,6 @@ In the root you will find the API with it's dependencies and in the folder `iss-
 2- Use `npm i` to install 	the local dependencies.
 
 3- Move to the directory `iss-app` and run `npm i` to install the app local dependencies.
-
 
 
 ## Available Scripts
