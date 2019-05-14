@@ -6,6 +6,6 @@ module.exports = {
     APP_APIURL: 'http://localhost:3001'
   },
   production: {
-    APP_APIURL: 'https://tranquil-plateau-18180.herokuapp.com'
+    APP_APIURL: 'https://interstellar-app.herokuapp.com/'
   },
-}[confEnv];
+}[ confEnv ];
