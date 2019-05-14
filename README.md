@@ -34,20 +34,16 @@ Run it to see any lint errors in the console. Please, fix them!
 
 Builds the app for production to the `build` folder.<br>
 It correctly bundles React in production mode and optimizes the build for the best performance.
-
-The build is minified and the filenames include the hashes.<br>
-Your app is ready to be deployed!
-	
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+The build is minified and the filenames include the hashes.
 
 #### `npm run eject`
 
 This command will remove the single build dependency from the project. It will copy all the configuration files and the transitive dependencies (Webpack, Babel, ESLint, etc) right into the project to have full control over them.
 
 
-### API `root`
+### API
 
-In the API directory, you can run:
+In the `root` directory, you can run:
 
 #### `npm run dev`
 
