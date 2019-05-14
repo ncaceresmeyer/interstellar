@@ -59,6 +59,17 @@ Runs the app in the production mode.<br>
 Open [http://localhost:3001](http://localhost:3001) to view it in the browser. This will serve the files from the `build` folder of the App. 
 
 
+## Dev helpers
+
+- Root: `routes/api` manage the core of the API, to consume all the external APIs get the responses.
+- Root: `config/config` to define the URLs of the consumed APIs
+- App directory (`iss-app`): `src` folder contains all the Frontend app. 
+-- You wil find a `core` file as parent and all the childs inside `components`.
+-- The Styles/SASS are handle in a separated folder `styles`, divided in base for general and components for each one.
+
+
+
+
 ## Deployment
 
 The deploy is done through Heroku server. URL: [https://interstellar-app.herokuapp.com/](https://interstellar-app.herokuapp.com/)
