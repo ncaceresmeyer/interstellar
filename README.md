@@ -1,38 +1,77 @@
+## Intro
+
+This APP is made with React and Express / Node. 
+
+In the root you will find the API with it's dependencies and in the folder `iss-app` the FE application.
+
+
+## Getting Started
+
+1- Clone the repo into your local environment.
+
+2- Use `npm i` to install 	the local dependencies.
+
+3- Move to the directory `iss-app` and run `npm i` to install the app local dependencies.
+
 
 
 ## Available Scripts
 
-In the project directory, you can run:
+### APP
 
-### `npm start`
+In the ISS APP directory `cd iss-app/`, you can run:
+
+#### `npm start`
 
 Runs the app in the development mode.<br>
 Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+Also, this watches all the CSS changes, and the page will reload if you make edits.<br>
 
-The page will reload if you make edits.<br>
-You will also see any lint errors in the console.
+#### `npm run lint`
+Run it to see any lint errors in the console. Please, fix them!
 
-### `npm test`
-
-Launches the test runner in the interactive watch mode.<br>
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
-
-### `npm run build`
+#### `npm run build`
 
 Builds the app for production to the `build` folder.<br>
 It correctly bundles React in production mode and optimizes the build for the best performance.
 
 The build is minified and the filenames include the hashes.<br>
 Your app is ready to be deployed!
-
+	
 See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
 
-### `npm run eject`
+#### `npm run eject`
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+This command will remove the single build dependency from the project. It will copy all the configuration files and the transitive dependencies (Webpack, Babel, ESLint, etc) right into the project to have full control over them.
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
 
-Instead, it will copy all the configuration files and the transitive dependencies (Webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+### API `root`
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+In the API directory, you can run:
+
+#### `npm run dev`
+
+Runs the app in the development mode.<br>
+Open [http://localhost:3001](http://localhost:3001) to view it in the browser.
+
+
+#### `npm start`
+
+Runs the app in the production mode.<br>
+Open [http://localhost:3001](http://localhost:3001) to view it in the browser. This will serve the files from the `build` folder of the App. 
+
+
+## Deployment
+
+The deploy is done through Heroku server. URL: [https://interstellar-app.herokuapp.com/](https://interstellar-app.herokuapp.com/)
+
+First of all, all the changes should be commited to the repo, in order for the next script to work. 
+
+
+#### `git push heroku master`
+
+Run this script in the Root directory. 
+This will move to the cd `iss-app`, run the `npm run build` and then will deploy all the changes to the server.
+
+
+
