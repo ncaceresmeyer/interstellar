@@ -8,7 +8,7 @@
     "npm": "5.0.3"
   },
   "scripts": {
-    "dev": "NODE_ENV=development node app.js",
+    "dev": "NODE_ENV=development nodemon app.js",
     "start": "NODE_ENV=production node app.js",
     "heroku-postbuild": "cd iss-app && npm install && npm run build"
   },
@@ -21,5 +21,8 @@
     "express": "~4.16.1",
     "http-errors": "~1.6.3",
     "morgan": "~1.9.1"
+  },
+  "devDependencies": {
+    "nodemon": "^1.19.0"
   }
 }
