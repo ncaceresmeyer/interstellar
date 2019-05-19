@@ -24,14 +24,18 @@ router.get('/', function(req, res, next) {
 				})
 				//response near cities of ISS location
 		        .then(resNearbyCities => {
-			    	const nearbyCities = resNearbyCities.data;
-			    	const firstCountry = nearbyCities[0][3];
+			    	const nearbyCities = resNearbyCities.data ? resNearbyCities.data.map(function(place) {
+						return { nearCity: place[1], nearCountry: place[3]};
+					}) : [];
+					const firstCountry = nearbyCities[0].nearCountry;
+					const firstCity = nearbyCities[0].nearCity;
 
 			    		res.send({
 							nearbyCities: nearbyCities,
 							issLat: Number(issLocation.latitude),
 							issLong: Number(issLocation.longitude)
 	        			})
+
 
 					/*axios.get(confEnv.API_PIXURL, 
 						{ params: {
@@ -44,19 +48,20 @@ router.get('/', function(req, res, next) {
 							}
 						})
 					.then(resMedia => {
-						const mediaPlaces = resMedia.data;
-						const mediaSearchTerm = resMedia.config.params.q;
+						const mediaPlaces = resMedia.data ? resMedia.data.hits.map(function(media) {
+							return { id: media.id, webformatURL: media.webformatURL, tags: media.tags};
+						}) : [];
 
 						// send all responses
 				    	res.send({
 							nearbyCities: nearbyCities,
 							issLat: Number(issLocation.latitude),
 							issLong: Number(issLocation.longitude),
-							mediaPlaces: mediaPlaces.hits,
-		        			mediaSearchTerm: mediaSearchTerm
+							mediaPlaces: mediaPlaces,
+		        			mediaSearchTerm: firstCountry
 	        			})
-					}).catch(errMedia => res.send(`Get Media ${errMedia}`));
-					*/
+					}).catch(errMedia => res.send(`Get Media ${errMedia}`));*/
+					
 
 		  		}).catch(errCities => res.send(`Get Cities ${errCities}`));
 	  	})
