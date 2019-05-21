@@ -26,7 +26,6 @@ export default class Core extends Component {
       		})
       	)
 	  	.catch(error => {
-	    	console.log('An error occurred:', error);
 	    	this.setState({ error: 'Sorry, an error occurred' });
 	    });
 	};
