@@ -23,7 +23,7 @@ export default class PlacesGallery extends Component {
       		})
       	)
 	  	.catch(error => {
-	    	console.log('An error occurred:', error);
+	    	//console.log('An error occurred:', error);
 	    	this.setState({ error: 'Sorry, an error occurred' });
 	    });
 	};
@@ -35,19 +35,19 @@ export default class PlacesGallery extends Component {
 			<div className="iss-container iss-galleryPlaces">
 				<div className="iss-wrapper">
 
-					<h3>Latest Cities Gallery</h3>
+					<h2>Latest Cities Gallery</h2>
 
 					<ul>
 						{this.props.nearbyCities.length > 1 ? this.props.nearbyCities.map((place, i) =>
 							<li key={ String(i) } className="iss-listItems">{ place.nearCity + ' - ' + place.nearCountry }</li> )
 						: 
-							( <p className="iss-alertMsg">Sorry, no cities near this location.</p> )
+							( <li className="iss-alertMsg">Sorry, no cities near this location.</li> )
 						}
 					</ul> 
 
 					{ error && <p className="iss-alertMsg">{ error }</p> }
 
-					<ul className="iss-grid">{ mediaSearchTerm !== undefined
+					<ul className="iss-grid" aria-label="Image Gallery">{ mediaSearchTerm !== undefined
 						? mediaPlaces.map(media => 
 							<li key={ media.id }>
 								<LazyLoad height={ '100%' }>
@@ -59,12 +59,12 @@ export default class PlacesGallery extends Component {
 							            	enter={ true }
 							            	appear={ true }
 							            	in> 
-											<img src={ media.webformatURL } alt={ media.tags } />
+											<img src={ media.webformatURL } alt={ media.tags } aria-label={ media.tags } />
 										</CSSTransition>
 									</TransitionGroup>
 								</LazyLoad>
 							</li>)
-						: ( <p className="iss-alertMsg">Duh, we can't find photos for this place...</p> )
+						: ( <li className="iss-alertMsg">Duh, we can't find photos for this place...</li> )
 					}</ul>
 
 				</div>

@@ -30,7 +30,7 @@ export default class Map extends Component {
 
 	render() {
 		const { id } = this.props;
-	    return (<div className="iss-mapContent" id={ id } />
+	    return (<div className="iss-mapContent" id={ id } aria-label="Map displaying current location" />
 	    );
 	}
 }

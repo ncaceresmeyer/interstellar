@@ -1,19 +1,30 @@
-//vars
+/* ------ VARS ------- */
+
+//fonts
 $font-family: 'Lato', Arial, Helvetica, sans-serif;
+
+//spaces
 $mainPadding: 60px;
 
-//core 
+//colors
+$color-error: #db0000;
+
+
+/* ------ CORE ------- */
+
+//wrappers 
 .iss-wrapper {
 	max-width: 1180px;
     margin: 0 auto;
+    color: #000;
 }
 .iss-container {
 	padding: $mainPadding;
 	font-weight: 300;
 }
 
-// fonts
-h3 {
+//fonts
+h2 {
 	font-size: 18px;
 	font-weight: 700;
 	line-height: 200%;
@@ -43,13 +54,13 @@ ul {
 }
 
 .iss-alertMsg {
-	color: #f00;
+	color: $color-error;
 	font-weight: 700;
 	font-size: 16px;
 	margin: 10px 0;
 }
 
-
+// responsive
 @media (max-width: 767px) {
 
 	.iss-container {
