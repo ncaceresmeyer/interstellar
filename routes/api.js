@@ -37,7 +37,7 @@ router.get('/', function(req, res, next) {
 	        			})*/
 					axios.get(confEnv.API_PIXURL, 
 						{ params: {
-							key: process.env.REACT_APP_PIXKEY, 	
+							key: process.env.REACT_APP_PIXKEY, 
 				    		q: firstCountry, 
 				    		image_type: 'photo', 
 				    		category: 'places',
@@ -59,7 +59,7 @@ router.get('/', function(req, res, next) {
 							mediaPlaces: mediaPlaces,
 		        			mediaSearchTerm: mediaSearchTerm
 	        			})
-	        			console.log('status', resMedia)
+	        			console.log(resMedia.status)
 					}).catch(errMedia => res.send(`Get Media ${errMedia}`));
 					
 

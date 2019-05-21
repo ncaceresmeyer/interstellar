@@ -13,3 +13,19 @@
 		letter-spacing: .01em;
 	}
 }
+
+
+@media (max-width: 767px) {
+
+	.iss-header {
+		
+		h1 {
+			font-size: 35px;
+			line-height: 45px;
+		}
+
+		p {
+			font-size: 16px;
+		}
+	}
+}

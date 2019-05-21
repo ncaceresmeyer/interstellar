@@ -50,3 +50,14 @@
   	transition: opacity 500ms ease;
 }
 
+
+@media (max-width: 767px) {
+
+	.iss-galleryPlaces {
+
+		.iss-grid {
+			grid-template-columns: none;
+		}
+	}
+}
+
