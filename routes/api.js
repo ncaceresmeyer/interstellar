@@ -18,10 +18,8 @@ router.get('/', function(req, res, next) {
 				{ params: {
 					radius: '600', 
 					limit: '15',
-					Latitude: '29.2521',
-					Longitude: '69.1759'
-					/*Latitude: issLocation.latitude,
-					Longitude: issLocation.longitude*/
+					Latitude: issLocation.latitude,
+					Longitude: issLocation.longitude
 					}
 				})
 				//response near cities of ISS location
