@@ -10,8 +10,9 @@ app.use((req, res, next) => {
   res.header("Access-Control-Allow-Origin", "*");
   res.header(
     "Access-Control-Allow-Headers",
-    "Origin, X-Requested-With, Content-Type, Accept",
+    "Origin, X-Requested-With, Content-Type, Accept"
   );
+  res.header("Cache-Control", "max-age=86400, s-max-age=86400");
   next();
 });
 
