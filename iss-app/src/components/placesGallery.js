@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import LazyLoad from 'react-lazyload';
 import { CSSTransition, TransitionGroup } from 'react-transition-group';
-import confEnv from '../config/config';
+import { getPlacesGallery } from '../services/servicePlacesGallery';
 
 export default class PlacesGallery extends Component {
 	constructor(props) {
@@ -12,24 +12,26 @@ export default class PlacesGallery extends Component {
 		}
     };
 
-    componentDidMount() {
-   		fetch(confEnv.APP_APIURL+'/api')
-  		.then(res => res.json())
-      	.then(mediaPlaces => 
-      		this.setState({
-				mediaPlaces: mediaPlaces.mediaPlaces,
-				mediaSearchTerm: mediaPlaces.mediaSearchTerm,
-				nearbyCities: mediaPlaces.nearbyCities
+	dataPlacesGallery() {
+      getPlacesGallery()
+        .then((res) => {
+            this.setState({
+				mediaPlaces: res.mediaPlaces,
+				mediaSearchTerm: res.mediaSearchTerm,
+				nearbyCities: res.nearbyCities
       		})
-      	)
-	  	.catch(error => {
-	    	//console.log('An error occurred:', error);
+        })
+        .catch(error => {
 	    	this.setState({ error: 'Sorry, an error occurred' });
 	    });
+    }
+
+    componentDidMount() {
+    	this.dataPlacesGallery()
 	};
 
 	render() {
-		const { mediaPlaces, mediaSearchTerm, error } = this.state;
+		const { mediaPlaces, mediaSearchTerm, error, nearbyCities } = this.state;
 
 		return (
 			<div className="iss-container iss-galleryPlaces">
@@ -38,7 +40,7 @@ export default class PlacesGallery extends Component {
 					<h2>Latest Cities Gallery</h2>
 
 					<ul>
-						{this.props.nearbyCities.length > 1 ? this.props.nearbyCities.map((place, i) =>
+						{nearbyCities.length > 1 ? nearbyCities.map((place, i) =>
 							<li key={ String(i) } className="iss-listItems">{ place.nearCity + ' - ' + place.nearCountry }</li> )
 						: 
 							( <li className="iss-alertMsg">Sorry, no cities near this location.</li> )

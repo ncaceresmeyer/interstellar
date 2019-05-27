@@ -27,14 +27,24 @@ router.get('/', function(req, res, next) {
 			    	const nearbyCities = resNearbyCities.data ? resNearbyCities.data.map(function(place) {
 						return { nearCity: place[1], nearCountry: place[3]};
 					}) : [];
-					const firstCountry = nearbyCities[0].nearCountry;
-					const firstCity = nearbyCities[0].nearCity;
 
-			    		/*res.send({
-							nearbyCities: nearbyCities,
-							issLat: Number(issLocation.latitude),
-							issLong: Number(issLocation.longitude)
-	        			})*/
+					//eliminate duplicated countries
+					const uniqueCountries = [...new Set(nearbyCities.map(c => c.nearCountry))];
+					uniqueCountries;
+ 					
+ 					// shuffle function between unique countries
+					const shuffleFunction = array => {
+					  for (let i = array.length - 1; i > 0; i--) {
+					    const rand = Math.floor(Math.random() * (i + 1));
+					    [array[i], array[rand]] = [array[rand], array[i]];
+					  }
+					  return array;
+					};
+					let shuffleCountries = shuffleFunction(uniqueCountries);
+
+					//get first element of the shuffle to use it as search param
+					let firstCountry = shuffleCountries[0];
+
 					axios.get(confEnv.API_PIXURL, 
 						{ params: {
 							key: process.env.REACT_APP_PIXKEY, 
@@ -46,10 +56,10 @@ router.get('/', function(req, res, next) {
 							}
 						})
 					.then(resMedia => {
-						const mediaPlaces = resMedia.data ? resMedia.data.hits.map(function(media) {
+						const mediaSearchTerm = resMedia.config.params.q;
+						const mediaPlaces = mediaSearchTerm !== undefined && resMedia.data ? resMedia.data.hits.map(function(media) {
 							return { id: media.id, webformatURL: media.webformatURL, tags: media.tags};
 						}) : [];
-						const mediaSearchTerm = resMedia.config.params.q;
 
 						// send all responses
 				    	res.send({
@@ -59,7 +69,6 @@ router.get('/', function(req, res, next) {
 							mediaPlaces: mediaPlaces,
 		        			mediaSearchTerm: mediaSearchTerm
 	        			})
-	        			console.log(resMedia.status)
 					}).catch(errMedia => res.send(`Get Media ${errMedia}`));
 					
 
