@@ -58,7 +58,7 @@ router.get('/', function(req, res, next) {
 					.then(resMedia => {
 						const mediaSearchTerm = resMedia.config.params.q;
 						const mediaPlaces = mediaSearchTerm !== undefined && resMedia.data ? resMedia.data.hits.map(function(media) {
-							return { id: media.id, webformatURL: media.webformatURL, tags: media.tags, user: media.user, url: 'https://pixabay.com/users/' + media.user + '-' + media.user_id};
+							return { id: media.id, webformatURL: media.webformatURL, tags: media.tags, user: media.user};
 						}) : [];
 
 						// send all responses
