@@ -45,14 +45,7 @@ router.get('/', function(req, res, next) {
 					//get first element of the shuffle to use it as search param
 					let firstCountry = shuffleCountries[0];
 
-					// send all responses
-				    	res.send({
-							nearbyCities: nearbyCities,
-							issLat: Number(issLocation.latitude),
-							issLong: Number(issLocation.longitude),
-	        			})
-
-					/*axios.get(confEnv.API_PIXURL, 
+					axios.get(confEnv.API_PIXURL, 
 						{ params: {
 							key: process.env.REACT_APP_PIXKEY, 
 				    		q: firstCountry, 
@@ -65,7 +58,7 @@ router.get('/', function(req, res, next) {
 					.then(resMedia => {
 						const mediaSearchTerm = resMedia.config.params.q;
 						const mediaPlaces = mediaSearchTerm !== undefined && resMedia.data ? resMedia.data.hits.map(function(media) {
-							return { id: media.id, webformatURL: media.webformatURL, tags: media.tags, user: media.user, url: confEnv.USR_PIXURL + media.user + '-' + media.user_id};
+							return { id: media.id, webformatURL: media.webformatURL, tags: media.tags, user: media.user, url: 'https://pixabay.com/users/' + media.user + '-' + media.user_id};
 						}) : [];
 
 						// send all responses
@@ -76,7 +69,7 @@ router.get('/', function(req, res, next) {
 							mediaPlaces: mediaPlaces,
 		        			mediaSearchTerm: mediaSearchTerm
 	        			})
-					}).catch(errMedia => res.send(`Get Media ${errMedia}`));*/
+					}).catch(errMedia => res.send(`Get Media ${errMedia}`));
 					
 
 		  		}).catch(errCities => res.send(`Get Cities ${errCities}`));
