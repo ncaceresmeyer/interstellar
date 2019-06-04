@@ -7,7 +7,7 @@ export default class MapLocation extends Component {
 		return (
 			<div className="iss-container iss-mapLocation">
 				<div className="iss-wrapper">
-					<h2>Current location</h2>
+					<h3>Current location</h3>
 					<p><strong>Latitude:</strong> {this.props.issLat} </p>
 					<p><strong>Longitude:</strong> {this.props.issLong} </p>
 
