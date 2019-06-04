@@ -68,6 +68,13 @@ Open [http://localhost:3001](http://localhost:3001) to view it in the browser. T
 -- The Styles/SASS are handle in a separated folder `styles`, divided in base for general and components for each one.
 
 
+## Accessibility 
+
+This app meet the requirements to be WGCA AA 2.0 following the guidelines of the W3C/WAI (https://www.w3.org/WAI/).
+How to test this?
+- Using a screen reader software. The Mac OS has one by default "VoiceOver", activate this with Command + F5
+And then navigate with the tab keyboard and follow the voice instructions.
+- Also, the Chrome Developer Tool has in the "Audits" tab, The lighthouse tool integrated. Select "Accessibility" and click on run the audit. *Use this as a guide, some of the issues might be outdated, always confirmed the the W3C official documentation*
 
 
 ## Deployment
