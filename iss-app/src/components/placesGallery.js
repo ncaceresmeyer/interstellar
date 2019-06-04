@@ -65,7 +65,7 @@ export default class PlacesGallery extends Component {
 							            	in> 
 											<React.Fragment>
 												<img src={ media.webformatURL } alt={ media.tags } aria-label={ 'image tagged with ' + media.tags } />
-												<span className="iss-grid-info"><p>{ mediaSearchTerm }</p></span>
+												<span className="iss-grid-info"><p>{ mediaSearchTerm } <a href={ media.url } aria-label={ 'uploaded by user' +  media.user } target="_blank"  rel="noopener noreferrer">{ '@' + media.user }</a></p></span>
 											</React.Fragment>
 										</CSSTransition>
 									</TransitionGroup>	
