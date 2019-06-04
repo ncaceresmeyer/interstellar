@@ -13,23 +13,49 @@
 			width: 100%;
 			padding-bottom: 100%;
 
-			&::before {
-				content: '';
-			    opacity: 0;
-			    background: rgba(0,0,0,.5);
-			    width: 100%;
-			    height: 386px;
-			    position: absolute;
-			    left: 0;
-			    right: 0;
-			    bottom: 0;
-			    top: 0;
-			    z-index: 1;
-			    transition: all ease .2s;
+			.iss-grid-info {
+				opacity: 0;
+				transition: all ease .2s;
+				width: 100%;
+				height: 100%;
+
+				p {
+					position: absolute;
+					left: 20px;
+					right: 20px;
+					bottom: 20px;
+					color: #fff;
+					z-index: 2;
+					font-size: 13px;
+					font-weight: 700;
+				}
+
+				a {
+					color: #fff;
+					text-decoration: none;
+					font-weight: 300;
+					float: right;
+
+					&:hover {
+						text-decoration: underline;
+					}
+				}
+
+				&::before {
+					content: '';
+				    background: rgba(0,0,0,.5);
+				    position: absolute;
+				    left: 0;
+				    right: 0;
+				    bottom: 0;
+				    top: 0;
+				    z-index: 1;
+				}
 			}
 
-			&:hover {
-				&::before {
+			&:hover,
+			&:focus {
+				.iss-grid-info {
 					opacity: 1;
 				}
 			}
@@ -66,7 +92,7 @@
 }
 
 .fade-enter, .fade-appear {
-	opacity: 0;
+	opacity: 0;	
 }
 .fade-appear-done.fade-enter-done {
   	opacity: 1;
