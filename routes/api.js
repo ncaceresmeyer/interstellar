@@ -25,25 +25,25 @@ router.get('/', function(req, res, next) {
 				//response near cities of ISS location
 		        .then(resNearbyCities => {
 			    	const nearbyCities = resNearbyCities.data ? resNearbyCities.data.map(function(place) {
-						return { nearCity: place[1], nearCountry: place[3]};
+						return { nearCity: place[ 1 ], nearCountry: place[ 3 ] };
 					}) : [];
 
 					//eliminate duplicated countries
-					const uniqueCountries = [...new Set(nearbyCities.map(c => c.nearCountry))];
+					const uniqueCountries = [ ...new Set(nearbyCities.map(c => c.nearCountry)) ];
 					uniqueCountries;
  					
  					// shuffle function between unique countries
 					const shuffleFunction = array => {
 					  for (let i = array.length - 1; i > 0; i--) {
 					    const rand = Math.floor(Math.random() * (i + 1));
-					    [array[i], array[rand]] = [array[rand], array[i]];
+					    [ array[ i ], array[ rand ] ] = [ array[ rand ], array[ i ] ];
 					  }
 					  return array;
 					};
-					let shuffleCountries = shuffleFunction(uniqueCountries);
+					const shuffleCountries = shuffleFunction(uniqueCountries);
 
 					//get first element of the shuffle to use it as search param
-					let firstCountry = shuffleCountries[0];
+					const firstCountry = shuffleCountries[ 0 ];
 
 					axios.get(confEnv.API_PIXURL, 
 						{ params: {
@@ -58,7 +58,7 @@ router.get('/', function(req, res, next) {
 					.then(resMedia => {
 						const mediaSearchTerm = resMedia.config.params.q;
 						const mediaPlaces = mediaSearchTerm !== undefined && resMedia.data ? resMedia.data.hits.map(function(media) {
-							return { id: media.id, webformatURL: media.webformatURL, tags: media.tags, user: media.user, url: 'https://pixabay.com/users/' + media.user + '-' + media.user_id};
+							return { id: media.id, webformatURL: media.webformatURL, tags: media.tags, user: media.user, url: 'https://pixabay.com/users/' + media.user + '-' + media.user_id };
 						}) : [];
 
 						// send all responses
@@ -68,13 +68,12 @@ router.get('/', function(req, res, next) {
 							issLong: Number(issLocation.longitude),
 							mediaPlaces: mediaPlaces,
 		        			mediaSearchTerm: mediaSearchTerm
-	        			})
-					}).catch(errMedia => res.send(`Get Media ${errMedia}`));
+	        			});	
+					}).catch(errMedia => res.send(`Get Media ${ errMedia }`));
 					
-
-		  		}).catch(errCities => res.send(`Get Cities ${errCities}`));
+		  		}).catch(errCities => res.send(`Get Cities ${ errCities }`));
 	  	})
-	  	.catch(errIssLoc => res.send(`Get ISS ${errIssLoc}`));
+	  	.catch(errIssLoc => res.send(`Get ISS ${ errIssLoc }`));
 
 });
 
